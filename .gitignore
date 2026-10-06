@@ -1,0 +1,19 @@
+# Metadatos y configuraciones de Eclipse
+.metadata/
+.recommenders/
+.loadpath
+.project
+.classpath
+.settings/
+
+# Archivos compilados y empaquetados
+bin/
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# Archivos del sistema operativo (macOS)
+.DS_Store
+__MACOSX/

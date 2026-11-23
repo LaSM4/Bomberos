@@ -26,6 +26,9 @@ import py.com.bomberos.controladores.RecargaMovilController;
 import py.com.bomberos.controladores.TipoIncidenteController;
 import py.edu.facitec.reutilizacion.paneles.PanelFondo;
 
+import java.sql.Connection;
+import py.com.bomberos.modelo.util.ReporteService;
+
 public class MenuPrincipalView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -78,12 +81,14 @@ public class MenuPrincipalView extends JFrame {
 		lblTitulo.setForeground(new Color(180, 0, 0));
 		contentPane.add(lblTitulo, BorderLayout.NORTH);
 
+		// Panel de Botones Izquierdo
 		JPanel panelMenuIzquierdo = new JPanel();
 		panelMenuIzquierdo.setOpaque(false);
 		panelMenuIzquierdo.setPreferredSize(new Dimension(240, 0));
 
 		panelMenuIzquierdo.setLayout(new GridLayout(8, 1, 0, 10));
 
+		// Panel de Botones Derecho
 		JPanel panelMenuDerecho = new JPanel();
 		panelMenuDerecho.setOpaque(false);
 		panelMenuDerecho.setPreferredSize(new Dimension(0, 240));
@@ -122,11 +127,15 @@ public class MenuPrincipalView extends JFrame {
 		btnSalir.addActionListener(e -> salirAplicacion());
 		panelMenuIzquierdo.add(btnSalir);
 
-		JButton btnReporteGeneral = crearBotonMenu("Crear Reporte General"), new Color(192, 57, 43));
+		JButton btnReporteGeneral = crearBotonMenu("Crear Reporte General", new Color(192, 57, 43));
 		btnReporteGeneral.addActionListener(e -> crearReporte());
 		panelMenuDerecho.add(btnReporteGeneral);
 
+		// Llamamos al Menu Izquierdo
 		contentPane.add(panelMenuIzquierdo, BorderLayout.WEST);
+
+		// Llamamos al Menu Derecho
+		contentPane.add(panelMenuDerecho, BorderLayout.EAST);
 
 		// Pie de página
 		JLabel lblFooter = new JLabel("POWERED BY Lucas Saavedra - Hiago Diaz");

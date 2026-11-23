@@ -1,0 +1,219 @@
+<!-- Created with Jaspersoft Studio version 7.0.8.final using JasperReports Library version 7.0.8-6f896111  -->
+<jasperReport name="reporte_bomberos_recarga" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="455c6395-7c48-42f3-a541-7ff7b60e8b1c">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="bomberos"/>
+	<query language="SQL"><![CDATA[SELECT
+    rm.id AS id,
+    rm.fechaHora AS fecha_hora,
+    m.descripcion AS movil,
+    CONCAT(b.nombre, ' ', b.apellido) AS bombero,
+    COALESCE(td.descripcion, da.direccion, 'Sin depósito') AS deposito_agua,
+    rm.cantidadLitros AS cantidad_litros,
+    rm.descripcion AS descripcion
+FROM recarga_movil rm
+INNER JOIN movil m
+    ON rm.movil_id = m.id
+LEFT JOIN bombero b
+    ON rm.bombero_id = b.id
+LEFT JOIN deposito_agua da
+    ON rm.deposito_agua_id = da.id
+LEFT JOIN tipo_deposito td
+    ON da.tipo_deposito_id = td.id
+ORDER BY rm.fechaHora DESC, rm.id DESC
+]]></query>
+	<field name="id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="recarga_movil"/>
+	</field>
+	<field name="fecha_hora" class="java.time.LocalDateTime">
+		<property name="com.jaspersoft.studio.field.name" value="fechaHora"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha_hora"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="recarga_movil"/>
+	</field>
+	<field name="movil" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="descripcion"/>
+		<property name="com.jaspersoft.studio.field.label" value="movil"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="movil"/>
+	</field>
+	<field name="bombero" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="bombero"/>
+		<property name="com.jaspersoft.studio.field.label" value="bombero"/>
+	</field>
+	<field name="deposito_agua" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="deposito_agua"/>
+		<property name="com.jaspersoft.studio.field.label" value="deposito_agua"/>
+	</field>
+	<field name="cantidad_litros" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="cantidadLitros"/>
+		<property name="com.jaspersoft.studio.field.label" value="cantidad_litros"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="recarga_movil"/>
+	</field>
+	<field name="descripcion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="descripcion"/>
+		<property name="com.jaspersoft.studio.field.label" value="descripcion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="recarga_movil"/>
+	</field>
+	<group name="id">
+		<expression><![CDATA[$F{id}]]></expression>
+	</group>
+	<group name="fecha_hora">
+		<expression><![CDATA[$F{fecha_hora}]]></expression>
+	</group>
+	<group name="movil">
+		<expression><![CDATA[$F{movil}]]></expression>
+	</group>
+	<group name="bombero">
+		<expression><![CDATA[$F{bombero}]]></expression>
+	</group>
+	<group name="deposito_agua">
+		<expression><![CDATA[$F{deposito_agua}]]></expression>
+	</group>
+	<group name="cantidad_litros">
+		<expression><![CDATA[$F{cantidad_litros}]]></expression>
+	</group>
+	<group name="descripcion">
+		<expression><![CDATA[$F{descripcion}]]></expression>
+	</group>
+	<background height="802" splitType="Stretch">
+		<element kind="image" uuid="bae91e00-3778-4360-b194-452da3c7855d" x="91" y="211" width="373" height="379">
+			<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<expression><![CDATA["/Users/savlucas881gmail.com/Downloads/cross-maltese-free-vector.png"]]></expression>
+		</element>
+		<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+	</background>
+	<title height="80" splitType="Stretch">
+		<element kind="textField" uuid="991db888-8c14-4c12-bc0e-95482c4cb0c5" x="87" y="50" width="380" height="30" fontSize="14.0" bold="true" hTextAlign="Center">
+			<box>
+				<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+			</box>
+			<expression><![CDATA["INFORME DE RECARGAS DE VEHICULOS"]]></expression>
+		</element>
+	</title>
+	<pageHeader height="56" splitType="Stretch">
+		<element kind="staticText" uuid="4d212f19-26cc-42a7-bc07-64cf786b3344" x="13" y="10" width="520" height="36" forecolor="#4A5568" hTextAlign="Center" vTextAlign="Bottom">
+			<text><![CDATA[Registro consolidado de las recargas de agua efectuadas por las
+unidades operativas, incluyendo información sobre fecha, vehículo,
+personal responsable, lugar de abastecimiento y cantidad suministrada.]]></text>
+		</element>
+	</pageHeader>
+	<columnHeader height="61" splitType="Stretch">
+		<element kind="staticText" uuid="a02b83fe-1030-4438-94cd-03a428854aae" x="44" y="0" width="104" height="40" forecolor="#FFFFFF" backcolor="#1B365D" mode="Opaque" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<box padding="8">
+				<pen lineColor="#000000"/>
+				<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+			<text><![CDATA[Fecha Recarga]]></text>
+		</element>
+		<element kind="staticText" uuid="af06ce43-5030-4285-86b4-4e30a2489659" x="13" y="0" width="31" height="40" forecolor="#FFFFFF" backcolor="#1B365D" mode="Opaque" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			<box padding="8">
+				<pen lineColor="#000000"/>
+				<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+			<text><![CDATA[ID]]></text>
+		</element>
+		<element kind="staticText" uuid="0110c376-1061-4d17-918e-b7933699a55b" x="148" y="0" width="100" height="40" forecolor="#FFFFFF" backcolor="#1B365D" mode="Opaque" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<box padding="8">
+				<pen lineColor="#000000"/>
+				<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+			<text><![CDATA[Vehiculo]]></text>
+		</element>
+		<element kind="staticText" uuid="88866d74-cb55-4791-bb92-70c876ed91bd" x="248" y="0" width="100" height="40" forecolor="#FFFFFF" backcolor="#1B365D" mode="Opaque" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<box padding="8">
+				<pen lineColor="#000000"/>
+				<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+			<text><![CDATA[Bombero]]></text>
+		</element>
+		<element kind="staticText" uuid="63d86230-5918-4a7e-83cc-336813567765" x="348" y="0" width="120" height="40" forecolor="#FFFFFF" backcolor="#1B365D" mode="Opaque" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<box padding="8">
+				<pen lineColor="#000000"/>
+				<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+			<text><![CDATA[Deposito de Agua]]></text>
+		</element>
+		<element kind="staticText" uuid="b642014c-42ed-4b86-b6b2-70c47b7acb14" x="468" y="0" width="65" height="40" forecolor="#FFFFFF" backcolor="#1B365D" mode="Opaque" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="237a79fe-ebd1-4a9e-9acf-6ec6a82b21b9"/>
+			<box padding="8">
+				<pen lineColor="#000000"/>
+				<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+			</box>
+			<text><![CDATA[Cantidad (L)]]></text>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="42" splitType="Stretch">
+			<element kind="textField" uuid="1818723f-cf0d-4d32-9529-10c4c2857a76" x="13" y="0" width="31" height="30" hTextAlign="Center" vTextAlign="Middle">
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="d1f804c2-62f2-4684-8721-8d5c043257bb"/>
+				<expression><![CDATA[$F{id}]]></expression>
+			</element>
+			<element kind="textField" uuid="fa465601-6aab-4596-95fa-a319992c30a6" x="44" y="0" width="106" height="30" hTextAlign="Center" vTextAlign="Middle">
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0ea55627-d0d1-4118-9368-4ebe7f63a54e"/>
+				<expression><![CDATA[$F{fecha_hora} == null ? " " :
+$F{fecha_hora}.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))]]></expression>
+			</element>
+			<element kind="textField" uuid="f65d5c89-3c45-44b0-9a76-0bedafbc5d9b" x="150" y="0" width="100" height="30" hTextAlign="Center" vTextAlign="Middle">
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="91efef7f-d8fb-4ae6-9c65-e20567ab84c5"/>
+				<expression><![CDATA[$F{movil}]]></expression>
+			</element>
+			<element kind="textField" uuid="c9f9e48d-72a3-4b79-82fe-903fa69b2c9e" x="250" y="0" width="98" height="30" hTextAlign="Center" vTextAlign="Middle">
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0429b52e-2b65-45d3-9cac-11aa97c2f77c"/>
+				<expression><![CDATA[$F{bombero}]]></expression>
+			</element>
+			<element kind="textField" uuid="fca501e9-23bb-42a0-9aa5-3612744a43e6" x="348" y="0" width="120" height="30" hTextAlign="Center" vTextAlign="Middle">
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="791b61c4-fbe2-4b94-ae9c-a9fc4b282155"/>
+				<expression><![CDATA[$F{deposito_agua}]]></expression>
+			</element>
+			<element kind="textField" uuid="4592cd46-cd1b-49ac-aa5c-3081ebbeb5c2" x="468" y="0" width="65" height="30" hTextAlign="Center" vTextAlign="Middle">
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="88fdc7ec-fa5d-4a2b-9572-fa51b9352e93"/>
+				<expression><![CDATA[$F{cantidad_litros}]]></expression>
+			</element>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+		</band>
+	</detail>
+	<columnFooter height="45" splitType="Stretch"/>
+	<pageFooter height="54" splitType="Stretch">
+		<element kind="staticText" uuid="42fa0b77-034e-453f-9553-58548f44ec10" x="435" y="20" width="45" height="25" forecolor="#4A5568" mode="Transparent" stretchType="NoStretch" hTextAlign="Right" vTextAlign="Middle">
+			<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			<text><![CDATA[Pagina]]></text>
+		</element>
+		<element kind="textField" uuid="a4f3ad10-63c7-45cf-a863-a85df6117e44" x="480" y="20" width="30" height="25" forecolor="#4A5568" hTextAlign="Center" vTextAlign="Middle">
+			<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<expression><![CDATA[$V{PAGE_NUMBER}]]></expression>
+		</element>
+		<element kind="staticText" uuid="93cf6e47-7c2f-4f75-8591-dfbbda6fc133" x="510" y="20" width="35" height="25" forecolor="#4A5568" mode="Transparent" stretchType="NoStretch" hTextAlign="Center" vTextAlign="Middle">
+			<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			<text><![CDATA[de]]></text>
+		</element>
+		<element kind="textField" uuid="055a2cf0-5106-46e3-8ba3-21a4eb4ca772" x="544" y="20" width="25" height="24" forecolor="#4A5568" evaluationTime="Report" hTextAlign="Center" vTextAlign="Middle">
+			<expression><![CDATA[$V{PAGE_NUMBER}]]></expression>
+		</element>
+	</pageFooter>
+	<summary height="42" splitType="Stretch"/>
+</jasperReport>

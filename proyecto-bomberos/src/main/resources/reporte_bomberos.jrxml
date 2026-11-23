@@ -96,7 +96,12 @@ ORDER BY i.fechaHoraReporte DESC
 	<variable name="descripcion_incidente1" resetType="Column" calculation="Count" class="java.lang.Integer">
 		<expression><![CDATA[$F{descripcion_incidente}]]></expression>
 	</variable>
-	<background splitType="Stretch"/>
+	<background height="800" splitType="Stretch">
+		<element kind="image" uuid="f4787904-0612-4163-8198-4c4cf4471b64" x="91" y="211" width="373" height="379">
+			<expression><![CDATA["/Users/savlucas881gmail.com/Downloads/cross-maltese-free-vector.png"]]></expression>
+		</element>
+		<property name="com.jaspersoft.studio.unit.height" value="px"/>
+	</background>
 	<title height="80" splitType="Stretch">
 		<element kind="textField" uuid="d2396395-7ae4-4e83-b4d6-075caf2c02f1" x="87" y="50" width="380" height="30" fontSize="14.0" bold="true" hTextAlign="Center">
 			<box>
@@ -105,7 +110,15 @@ ORDER BY i.fechaHoraReporte DESC
 			<expression><![CDATA["REPORTE GENERAL DE BOMBEROS E INCIDENTES"]]></expression>
 		</element>
 	</title>
-	<pageHeader height="18" splitType="Stretch"/>
+	<pageHeader height="48" splitType="Stretch">
+		<element kind="staticText" uuid="56ce77f3-d22f-48a9-886a-7c156341d327" x="13" y="10" width="520" height="36" forecolor="#4A5568" hTextAlign="Center">
+			<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			<text><![CDATA[Registro consolidado de incidentes y servicios atendidos por el Cuerpo de Bomberos, incluyendo tipo de incidente, personas afectadas, personal interviniente y observaciones de la intervención.]]></text>
+		</element>
+	</pageHeader>
 	<columnHeader height="49" splitType="Stretch">
 		<element kind="staticText" uuid="55b87bb6-ea74-4fbd-a944-fec3111ea575" x="-14" y="0" width="31" height="40" forecolor="#FFFFFF" backcolor="#1B365D" mode="Opaque" bold="true" hTextAlign="Center" vTextAlign="Middle">
 			<box padding="8">
@@ -200,6 +213,24 @@ $F{fechaHoraReporte}.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/
 		</band>
 	</detail>
 	<columnFooter height="45" splitType="Stretch"/>
-	<pageFooter height="54" splitType="Stretch"/>
-	<summary height="42" splitType="Stretch"/>
+	<pageFooter height="45" splitType="Stretch">
+		<element kind="textField" uuid="153a6d21-bbd4-4dd0-8321-dbe5c60f3100" x="480" y="20" width="30" height="25" forecolor="#4A5568" hTextAlign="Center" vTextAlign="Middle">
+			<property name="com.jaspersoft.studio.unit.y" value="px"/>
+			<property name="com.jaspersoft.studio.unit.width" value="px"/>
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<expression><![CDATA[$V{PAGE_NUMBER}]]></expression>
+		</element>
+		<element kind="staticText" uuid="0f4a9e7c-9b10-40cb-aa52-410ad8d05541" x="435" y="20" width="45" height="25" forecolor="#4A5568" mode="Transparent" stretchType="NoStretch" hTextAlign="Right" vTextAlign="Middle">
+			<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			<text><![CDATA[Pagina]]></text>
+		</element>
+		<element kind="staticText" uuid="33330ac0-522b-4936-8f2f-d7f4ba57cc91" x="510" y="20" width="35" height="25" forecolor="#4A5568" mode="Transparent" stretchType="NoStretch" hTextAlign="Center" vTextAlign="Middle">
+			<property name="com.jaspersoft.studio.unit.x" value="px"/>
+			<text><![CDATA[de]]></text>
+		</element>
+		<element kind="textField" uuid="ddb8f51c-b7c8-476c-a1a5-1ea83f70d85c" x="544" y="20" width="25" height="24" forecolor="#4A5568" evaluationTime="Report" hTextAlign="Center" vTextAlign="Middle">
+			<expression><![CDATA[$V{PAGE_NUMBER}]]></expression>
+		</element>
+	</pageFooter>
+	<summary height="45" splitType="Stretch"/>
 </jasperReport>

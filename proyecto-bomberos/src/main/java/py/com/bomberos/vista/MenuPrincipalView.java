@@ -84,6 +84,12 @@ public class MenuPrincipalView extends JFrame {
 
 		panelMenuIzquierdo.setLayout(new GridLayout(8, 1, 0, 10));
 
+		JPanel panelMenuDerecho = new JPanel();
+		panelMenuDerecho.setOpaque(false);
+		panelMenuDerecho.setPreferredSize(new Dimension(0, 240));
+
+		panelMenuDerecho.setLayout(new GridLayout(10, 0, 1, 8));
+
 		JButton btnBomberos = crearBotonMenu("Bomberos", new Color(231, 76, 60));
 		btnBomberos.addActionListener(e -> abrirBombero());
 		panelMenuIzquierdo.add(btnBomberos);
@@ -115,6 +121,10 @@ public class MenuPrincipalView extends JFrame {
 		JButton btnSalir = crearBotonMenu("Salir del Sistema", new Color(192, 57, 43));
 		btnSalir.addActionListener(e -> salirAplicacion());
 		panelMenuIzquierdo.add(btnSalir);
+
+		JButton btnReporteGeneral = crearBotonMenu("Crear Reporte General"), new Color(192, 57, 43));
+		btnReporteGeneral.addActionListener(e -> crearReporte());
+		panelMenuDerecho.add(btnReporteGeneral);
 
 		contentPane.add(panelMenuIzquierdo, BorderLayout.WEST);
 

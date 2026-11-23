@@ -26,7 +26,6 @@ import py.com.bomberos.controladores.RecargaMovilController;
 import py.com.bomberos.controladores.TipoIncidenteController;
 import py.edu.facitec.reutilizacion.paneles.PanelFondo;
 
-import java.sql.Connection;
 import py.com.bomberos.modelo.util.ReporteService;
 
 public class MenuPrincipalView extends JFrame {
@@ -91,9 +90,9 @@ public class MenuPrincipalView extends JFrame {
 		// Panel de Botones Derecho
 		JPanel panelMenuDerecho = new JPanel();
 		panelMenuDerecho.setOpaque(false);
-		panelMenuDerecho.setPreferredSize(new Dimension(0, 240));
+		panelMenuDerecho.setPreferredSize(new Dimension(240, 0));
 
-		panelMenuDerecho.setLayout(new GridLayout(10, 0, 1, 8));
+		panelMenuDerecho.setLayout(new GridLayout(8, 1, 0, 10));
 
 		JButton btnBomberos = crearBotonMenu("Bomberos", new Color(231, 76, 60));
 		btnBomberos.addActionListener(e -> abrirBombero());
@@ -266,5 +265,28 @@ public class MenuPrincipalView extends JFrame {
 			});
 		}
 		tipoIncidenteView.setVisible(true);
+	}
+
+	private void crearReporte() {
+		jakarta.persistence.EntityManager em = py.com.bomberos.modelo.util.JPAUtil.getEntityManager();
+		try {
+			org.hibernate.Session session = em.unwrap(org.hibernate.Session.class);
+			session.doReturningWork(conn -> {
+				ReporteService.mostrarReporteGeneralBomberos(conn);
+				return null;
+			});
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			Throwable causa = ex.getCause() != null ? ex.getCause() : ex;
+			JOptionPane.showMessageDialog(
+					this,
+					"Error al generar el reporte: " + causa.getMessage(),
+					"Error",
+					JOptionPane.ERROR_MESSAGE);
+		} finally {
+			if (em != null && em.isOpen()) {
+				em.close();
+			}
+		}
 	}
 }
